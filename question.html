@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}Question {{ q_number }} | AWS Quiz{% endblock %}
+
+{% block content %}
+<div class="quiz-container">
+
+    <div class="progress">
+        <p>Question {{ q_number }} of {{ total }}</p>
+
+        <div class="progress-bar">
+            <div class="progress-fill"
+                 style="width: {{ progress | default(0) }}%;">
+            </div>
+        </div>
+    </div>
+
+    <div class="question-box">
+        <h2>{{ question.question }}</h2>
+    </div>
+
+    <form method="POST" action="{{ url_for('questions') }}">
+
+        {# If using Flask-WTF, uncomment this:
+        {{ csrf_token() }}
+        #}
+
+        <div class="answer-buttons">
+            <button type="submit" name="answer" value="true" class="btn-true">
+                ✅ True
+            </button>
+
+            <button type="submit" name="answer" value="false" class="btn-false">
+                ❌ False
+            </button>
+        </div>
+
+    </form>
+
+</div>
+{% endblock %}
