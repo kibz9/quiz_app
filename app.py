@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for, session
 from data import question_data
 
 app = Flask(__name__)
-app.secret_key = "aws_quiz_secret_key"
+app.secret_key = "aws_quiz_secret_key" # used to avoid changes  since  the browser   has  cooking  the secret key  help so that   it  does  not chanhe
 
 @app.route("/")
 def home():
@@ -12,7 +12,7 @@ def home():
 @app.route("/questions", methods=["GET", "POST"])
 def questions():
     # start quiz - set index to 0
-    if "q_index" not in session:
+    if "q_index" not in session: # used  for session for question which  used  to get sessionz
         session["q_index"] = 0
         session["score"] = 0
         session["answers"] = []
@@ -53,7 +53,7 @@ def questions():
                            total=total,
                            progress=progress)  # ← added this
 
-@app.route("/results")
+@app.route("/results") # used  to  get  results and store the  results digitically 
 def results():
     score = session.get("score", 0)
     answers = session.get("answers", [])
